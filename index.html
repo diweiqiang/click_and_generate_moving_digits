@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        p{
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+<p>click freely</p>
+<p>click freely</p>
+<p>click freely</p>
+<p>click freely</p>
+<p>click freely</p>
+<p>click freely</p>
+<p>click freely</p>
+<p>click freely</p>
+<p>click freely</p>
+<p>click freely</p>
+<p>click freely</p>
+<p>click freely</p>
+
+<script src="jquery-3.1.0.js"></script>
+<script>
+    var click_count=0;
+    $('body').click(function (e) {
+        e.stopPropagation();
+
+        var $toInsert=$('<span>').text('+'+(++click_count));
+        var x=e.clientX;
+        var y=e.clientY;
+
+        $toInsert.css({
+            'position':'absolute',
+            'top':y-15,
+            'left':x,
+            'color':'red'
+        });
+        $('body').append($toInsert);
+
+        $toInsert.animate({
+            'top':y-180,
+            'opacity':0
+        },1500,function () {
+            $toInsert.remove();
+        })
+    });
+</script>
+</body>
+</html>
